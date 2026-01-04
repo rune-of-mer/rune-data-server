@@ -2,6 +2,8 @@
 
 Rune of Mer のゲームデータを提供する API サーバ 
 
+- [Contributing Guide](./.github/CONTRIBUTING.md)
+
 ```shell
 git clone git@github.com:rune-of-mer/rune-data-server.git
 cd rune-data-server
