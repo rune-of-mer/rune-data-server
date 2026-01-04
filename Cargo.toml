@@ -4,3 +4,13 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.100"
+axum = "0.8.8"
+diesel = { version = "2.3.5", features = ["mysql", "r2d2"] }
+dotenvy = "0.15.7"
+envy = "0.4.2"
+r2d2 = "0.8.10"
+serde = { version = "1.0.228", features = ["derive"] }
+tokio = { version = "1.49.0", features = ["macros", "rt-multi-thread"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter", "json"] }

@@ -1,0 +1,12 @@
+[tools]
+mysql = "8.0.33"
+
+[env]
+_.path = "{{env.HOME}}/.local/share/mise/installs/mysql/8.0.33/bin"
+PKG_CONFIG_PATH = "{{env.HOME}}/.local/share/mise/installs/mysql/8.0.33/lib/pkgconfig"
+
+[tasks.build]
+run = "cargo build"
+
+[tasks.dev]
+run = "cargo run"
