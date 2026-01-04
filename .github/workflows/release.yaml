@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Get token
+        id: rune-data-server-token
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Run release-please-action
+        uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ steps.rune-data-server-token.outputs.token }}
+
+      - name: Publish the Docker package
+        if: steps.release.outputs.release_created
+        uses: ./.github/actions/publish
+        with:
+          major: ${{ steps.release.outputs.major }}
+          minor: ${{ steps.release.outputs.minor }}
+          patch: ${{ steps.release.outputs.patch }}
+          sha: ${{ steps.release.outputs.sha }}
